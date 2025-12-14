@@ -14,10 +14,7 @@ if (!builder.Environment.IsDevelopment())
 {
     builder.Configuration.Sources.Clear();
     builder.Configuration
-        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false)
-        .AddEnvironmentVariables()
-        .AddCommandLine(args);
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
 }
 // END: Fix for Render.com inotify limit
 
