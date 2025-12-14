@@ -8,6 +8,19 @@ using CarSalesAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// START: Fix for Render.com inotify limit
+// Disable reloadOnChange for appsettings.json in Production to prevent "configured user limit (1024) on the number of inotify instances has been reached"
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Configuration.Sources.Clear();
+    builder.Configuration
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false)
+        .AddEnvironmentVariables()
+        .AddCommandLine(args);
+}
+// END: Fix for Render.com inotify limit
+
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
