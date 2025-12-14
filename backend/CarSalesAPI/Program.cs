@@ -78,7 +78,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // CORS - allow configurable origins via the 'AllowedOrigins' configuration
-var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(',') ?? new[] { "http://localhost:4200", "https://584-project.vercel.app" };
+var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(',') ?? new[] { "https://584-project.vercel.app" };
 
 builder.Services.AddCors(options =>
 {
